@@ -1,0 +1,31 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="MongoDB.Driver" Version="2.17.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="Auxiliary">
+      <HintPath>..\..\Auxiliary\Auxiliary\bin\Debug\net6.0\Auxiliary.dll</HintPath>
+    </Reference>
+    <Reference Include="OTAPI">
+      <HintPath>..\..\TShock-Beta-win-x64-Release\TShock-Beta-win-x64-Release\bin\OTAPI.dll</HintPath>
+    </Reference>
+    <Reference Include="OTAPI.Runtime">
+      <HintPath>..\..\TShock-Beta-win-x64-Release\TShock-Beta-win-x64-Release\bin\OTAPI.Runtime.dll</HintPath>
+    </Reference>
+    <Reference Include="TerrariaServer">
+      <HintPath>..\..\TShock-Beta-win-x64-Release\TShock-Beta-win-x64-Release\bin\TerrariaServer.dll</HintPath>
+    </Reference>
+    <Reference Include="TShockAPI">
+      <HintPath>..\..\TShock-Beta-win-x64-Release\TShock-Beta-win-x64-Release\ServerPlugins\TShockAPI.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+</Project>
