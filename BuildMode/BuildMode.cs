@@ -26,7 +26,7 @@ namespace BuildMode
         private bool _day;
 
         public override string Author
-            => "Armano den Boef (Rozen4334)";
+            => "TBC Developers";
 
         public override string Description
             => "A plugin that sets fake time by command.";
