@@ -67,7 +67,7 @@ namespace BuildMode
             ServerApi.Hooks.GamePostInitialize.Register(this, OnPostInitialize);
             ServerApi.Hooks.GameUpdate.Register(this, OnUpdate);
             ServerApi.Hooks.NetSendBytes.Register(this, OnSendBytes);
-            ServerApi.Hooks.NetGreetPlayer.Register(this, OnGreet);
+            ServerApi.Hooks.ServerLeave.Register(this, OnLeave);
 
             Commands.ChatCommands.Add(new Command("buildmode.toggle", async (x) =>
             {
@@ -93,7 +93,7 @@ namespace BuildMode
             }
         }
 
-        private void OnGreet(GreetPlayerEventArgs args)
+        private void OnLeave(LeaveEventArgs args)
             => _enabled.Remove(args.Who);
 
         private void OnUpdate(EventArgs args)
