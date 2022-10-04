@@ -77,14 +77,15 @@ namespace BuildMode
             Commands.ChatCommands.Add(new Command("buildmode.time", Time, "stime", "st"));
         }
 
-        private async Task Tick(ElapsedEventArgs args)
+        private async Task Tick(ElapsedEventArgs _)
         {
             foreach (int i in _enabled)
             {
                 var plr = TShock.Players[i];
 
-                if (!plr.IsLoggedIn)
+                if (plr is null || plr.Active || plr.IsLoggedIn)
                     continue;
+
                 var entity = await BuffsEntity.GetAsync(plr.Account.ID);
 
                 foreach (var buff in entity.Buffs)
