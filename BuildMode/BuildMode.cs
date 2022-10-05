@@ -83,7 +83,7 @@ namespace BuildMode
             {
                 var plr = TShock.Players[i];
 
-                if (plr is null || plr.Active || plr.IsLoggedIn)
+                if (plr is null || !(plr.Active && plr.IsLoggedIn))
                     continue;
 
                 var entity = await BuffsEntity.GetAsync(plr.Account.ID);
