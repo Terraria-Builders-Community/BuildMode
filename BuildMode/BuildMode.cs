@@ -86,6 +86,9 @@ namespace BuildMode
                 if (plr is null || !(plr.Active && plr.IsLoggedIn))
                     continue;
 
+                if (plr.Account is null)
+                    continue;
+
                 var entity = await BuffsEntity.GetAsync(plr.Account.ID);
 
                 foreach (var buff in entity.Buffs)
