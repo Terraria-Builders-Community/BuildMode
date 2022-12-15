@@ -89,9 +89,9 @@ namespace BuildMode
                 if (plr.Account is null)
                     continue;
 
-                var entity = await BuffsEntity.GetAsync(plr.Account.ID);
+                var entity = await IModel.GetAsync(GetRequest.Bson<BuildmodeUser>(x => x.TShockId == plr.Account.ID), x => x.TShockId = plr.Account.ID);
 
-                foreach (var buff in entity.Buffs)
+                foreach (var buff in entity!.Buffs)
                     plr.SetBuff(buff, 120);
             }
         }
@@ -202,7 +202,7 @@ namespace BuildMode
             int i = args.Player.Index;
             int id = args.Player.Account.ID;
 
-            var entity = await BuffsEntity.GetAsync(id);
+            var entity = await IModel.GetAsync(GetRequest.Bson<BuildmodeUser>(x => x.TShockId == id), x => x.TShockId = id);
 
             switch (args.Parameters.FirstOrDefault())
             {
@@ -236,9 +236,9 @@ namespace BuildMode
 
                                 }
 
-                                if (buffId > 0 && buffId < Main.maxBuffTypes)
+                                if (buffId > 0 && buffId < Terraria.ID.BuffID.Count)
                                 {
-                                    if (entity.Buffs.Contains(buffId))
+                                    if (entity!.Buffs.Contains(buffId))
                                     {
                                         entity.Buffs = entity.Buffs.Where(x => x != buffId).ToArray();
                                         args.Player.SendSuccessMessage($"Removed {Lang.GetBuffName(buffId)}");
@@ -272,9 +272,9 @@ namespace BuildMode
                                         buffId = found[0];
                                 }
 
-                                if (buffId > 0 && buffId < Main.maxBuffTypes)
+                                if (buffId > 0 && buffId < Terraria.ID.BuffID.Count)
                                 {
-                                    if (entity.Buffs.Contains(buffId))
+                                    if (entity!.Buffs.Contains(buffId))
                                         args.Player.SendErrorMessage("You already have this buff!");
 
                                     else
@@ -291,7 +291,7 @@ namespace BuildMode
 
                         case "list":
                         case "l":
-                            args.Player.SendInfoMessage($"Your current buffs: (Defined by ID)\n{string.Join(", ", entity.Buffs)}");
+                            args.Player.SendInfoMessage($"Your current buffs: (Defined by ID)\n{string.Join(", ", entity!.Buffs)}");
                             return;
                         default:
                             args.Player.SendErrorMessage("Invalid syntax. Valid syntax: '/buildmode buffs (add/remove/list) <buff>");
