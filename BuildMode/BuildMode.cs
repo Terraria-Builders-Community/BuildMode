@@ -298,6 +298,8 @@ namespace BuildMode
                             return;
                     }
 
+                case "noon":
+                case "bright":
                 case "day":
                 case "d":
                 case "daytime":
@@ -311,6 +313,7 @@ namespace BuildMode
                     return;
 
                 case "night":
+                case "dark":
                 case "n":
                 case "nighttime":
                     if (!_enabled.Contains(i))
